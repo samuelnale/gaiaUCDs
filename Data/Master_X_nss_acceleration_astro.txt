@@ -1,0 +1,10 @@
+accel_ra		, 2, f, accel_ra_error
+accel_ra_error		, 2, f
+accel_dec		, 2, f, accel_dec_error
+accel_dec_error		, 2, f
+deriv_accel_ra		, 2, f, deriv_accel_ra_error
+deriv_accel_ra_error	, 2, f
+deriv_accel_dec		, 2, f, deriv_accel_dec_error
+deriv_accel_dec_error	, 2, f
+goodness_of_fit		, 2, f
+significance		, 2, f

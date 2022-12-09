@@ -1,0 +1,3 @@
+astrometric_sigma5d_max		, 0 , S
+ipd_frac_multi_peak		, 0 , S
+ruwe				, 0 , S

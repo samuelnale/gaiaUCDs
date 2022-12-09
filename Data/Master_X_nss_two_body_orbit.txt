@@ -1,0 +1,34 @@
+a_thiele_innes			, 2, f, a_thiele_innes_error
+a_thiele_innes_error		, 2, f
+b_thiele_innes			, 2, f, b_thiele_innes_error
+b_thiele_innes_error		, 2, f
+f_thiele_innes			, 2, f, f_thiele_innes_error
+f_thiele_innes_error		, 2, f
+g_thiele_innes			, 2, f, g_thiele_innes_error
+g_thiele_innes_error		, 2, f
+c_thiele_innes			, 2, f, c_thiele_innes_error
+c_thiele_innes_error		, 2, f
+h_thiele_innes			, 2, f, h_thiele_innes_error
+h_thiele_innes_error		, 2, f
+period				, 2, f, period_error
+period_error			, 2, f
+t_periastron			, 2, f, t_periastron_error
+t_periastron_error		, 2, f
+eccentricity			, 2, f, eccentricity_error
+eccentricity_error		, 2, f
+center_of_mass_velocity		, 2, f, center_of_mass_velocity_error
+center_of_mass_velocity_error	, 2, f
+semi_amplitude_primary		, 2, f, semi_amplitude_primary_error
+semi_amplitude_primary_error	, 2, f
+semi_amplitude_secondary	, 2, f, semi_amplitude_secondary_error
+semi_amplitude_secondary_error	, 2, f
+mass_ratio			, 2, f, mass_ratio_error
+mass_ratio_error		, 2, f
+fill_factor_primary		, 2, f, fill_factor_primary_error
+fill_factor_primary_error	, 2, f
+fill_factor_secondary		, 2, f, fill_factor_secondary_error
+fill_factor_secondary_error	, 2, f
+inclination			, 2, f, inclination_error
+inclination_error		, 2, f
+arg_periastron			, 2, f, arg_periastron_error
+arg_periastron_error		, 2, f

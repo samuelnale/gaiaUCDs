@@ -1,0 +1,36 @@
+# Comments after the # character - they won't be read by the program
+# SOURCE_ID, SOURCE_ID_COMP1, SOURCE_ID_COMP2 and GAIATOG are always necessary
+# GAIAG, GAIARP, PARALLAX are necessary to create H-R diagram images
+# RA2000, DEC2000 are necessary to create the Aladin's script
+
+SHORTNAME		, 12 , S
+DISCOVERYNAME		, 20 , S    
+DISCOVERYREFNAME	, 20 , S
+SPTOPTNAME		, 5 ,  S
+SPTNIRNAME		, 5 ,  S
+PARALLAX		, 2 ,  F
+PARALLAXERR		, 2 ,  F
+PARALLAXREFNAME		, 20 , S
+PMRA			, 2 ,  F
+PMRAERR  		, 2 ,  F
+PMDEC			, 2 ,  F
+PMDECERR		, 2 ,  F
+TMASSJ 	   		, 2 ,  F
+TMASSJERR		, 2 ,  F
+GAIAG			, 2 ,  F
+GAIAGERR		, 2 ,  F
+GAIABP			, 2 ,  F
+GAIABPERR		, 2 ,  F
+GAIARP			, 2 ,  F
+GAIARPERR		, 2 ,  F
+RA2000			, 8 ,  F
+DEC2000			, 8 ,  F
+SPTGEN			, 1 ,  F
+JGEN			, 2 ,  F
+VTAN     	   	, 2 ,  F
+EVTAN             	, 2 ,  F
+
+SOURCE_ID		, 25 , I
+SOURCE_ID_COMP1		, 25 , I		
+SOURCE_ID_COMP2		, 25 , I
+GAIATOG			, 0 ,  F
