@@ -1,7 +1,7 @@
 # gaiaUCDs
 
 First of all, please DO NOT move or rename the "basic" files and folders.
-Probably this program will work only under Linux environments.
+Probably this program will work only under Linux OS.
 
 #################### Description ####################
 
