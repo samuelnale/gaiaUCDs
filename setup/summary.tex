@@ -1,0 +1,49 @@
+\newpage
+\section{Summary}
+The Gaia ultra-cool dwarf sample (GUCDS) is a list of objects with
+published spectral types later than M7. The basic philosophy and first
+effort is discussed in \cite{2017MNRAS.469..401S}. A number of these
+UCDs have been found to be in binary systems with Gaia objects and here we
+reproduced basic information for all of the found systems todate.
+
+
+To generate the list of benchmark systems for each UCD we searched for
+candidate companions in the Gaia EDR3 that met the following criteria:
+\begin{equation} \label{eq1}
+\begin{split}
+\rho         & < 100 \varpi, \\
+\Delta\varpi & < {\rm max}[1.0,3\sigma_{\varpi}],\\
+\Delta\mu    & < 0.1\mu,\\
+\Delta\theta & < 15\degree
+\end{split}
+\end{equation}
+
+\noindent where $\rho$ is the separation on the sky in arcseconds,
+$\Delta\varpi$ is the difference of the GUCDS and candidate primary
+parallaxes, $\varpi$ and $\sigma_{\varpi}$ are the parallax and error
+of the GUCDS object- when no parallax has been measured we used
+spectro-photometric distances. $\Delta\mu$ is the difference of the
+total proper motions, and $\Delta\theta$ is the difference of the
+proper motion position angles. The chosen $\rho$ criterion is
+equivalent to 100,000\,au, which is a conservative upper limit for a
+projected physical separation ($s$). This will meet the binding energy
+criterion of $ |U_g^*| = G M_1 M_2 / s > 10^{33} J $ as developed by
+\cite{2009A&A...507..251C} for a 0.1~M$_{\odot}$ + 2~M$_{\odot}$
+system \cite{2010AJ....139.2566D}. The $\Delta\varpi$
+criterion is based on a consideration of the errors, standard
+3$\sigma$ criterion or 1.0\,mas, to allow for solutions that had
+unrealistically low errors. For the modulus and position angles of the
+proper motion, criteria based on the errors would remove nearby
+objects with significant orbital motion, hence we simply choose hard
+criteria of $\sim$10\% in both parameters. This is large enough to
+accommodate most orbital motion, but small enough to avoid most false
+positives.
+
+Each target is provided with basic information made from the original
+lists, Gaia catalogs, online sources and a latex commetn file. The
+main latex files are generated automatically but comments can be added
+to a particular target by editing the corresponding latex comment file
+which is conserved between successive latex generations.
+
+
+

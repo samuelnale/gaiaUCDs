@@ -1,0 +1,14 @@
+#Files can be .FITS or .CSV
+
+##### Primary file
+
+Master_withDR3.fits
+
+##### Other files
+
+Master_X_astrophysical_parameters.fits
+# Master_X_astrophysical_parameters_supp.fits
+Master_X_gaia_source.csv
+Master_X_nss_acceleration_astro.fits
+Master_X_nss_two_body_orbit.fits
+Master_X_xp_summary.csv
