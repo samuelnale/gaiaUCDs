@@ -5,7 +5,7 @@ Probably this program will work only under Linux OS.
 
 #################### Description ####################
 
-[0] The primary file is "main.py". To run the program, "python main.py". The "config.py" is service only file. Other python files are inside /utils/.
+[0] The main file is "main.py" (unbelievable). To run the program, "python main.py". The "config.py" is service only file. Other python files are inside /utils/.
 
 --------------------------------------------------
 
