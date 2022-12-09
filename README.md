@@ -1,5 +1,8 @@
 # gaiaUCDs
 
+NOTE: /Data files are missing, you can find the ones I've used there: https://drive.google.com/drive/folders/1XGBTtp4AsmOkBsOjV2KRX8ACVCfgvcvW?usp=share_link
+Download and copy them inside the Data folder where there are the matching .txt
+ 
 First of all, please DO NOT move or rename the "basic" files and folders.
 Probably this program will work only under Linux OS.
 
