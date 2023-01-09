@@ -7,7 +7,7 @@ import pandas as pd
 
 def writelines_targetfiles(columns_by_file, system_df, head_target_text, tail_target_text, texpath, sorted_stars_shortnames, SD, href_lines, separation_AU):
     pd.options.mode.chained_assignment = None  # default='warn'
-    head_target_text[2] = r'\section{' + " \& ".join(sorted_stars_shortnames) + r'}'
+    head_target_text[2] = r'\section{' + " \& ".join(sorted_stars_shortnames) + r'}' + '\n' +  '\label{sec:' + SD[0]['SHORTNAME'] + r'}'
     # FIRST TABLE CODE
     with open(texpath, 'w', encoding='utf-8') as file:
         file.writelines(head_target_text)
@@ -49,7 +49,7 @@ def writelines_targetfiles(columns_by_file, system_df, head_target_text, tail_ta
         backup = tail_target_text[4]
         temp = []
         for i in range(len(href_lines)):
-            temp.append(tail_target_text[4].replace("DISCOVERYNAME", href_lines[i].replace("+", "&2B").replace("-", "%2D").replace(" ","+")).replace("STARNAME", href_lines[i]))
+            temp.append(tail_target_text[4].replace("DISCOVERYNAME", href_lines[i].replace("+", "%2B").replace("-", "%2D").replace(" ","+")).replace("STARNAME", href_lines[i]))
         tail_target_text[4] = r"\\".join(temp)
         tail_target_text[6] = r'\includegraphics[width=3.0in]{targetfiles/' + sorted_stars_shortnames[0] + "/" + sorted_stars_shortnames[0] + '.jpg}\n'
         tail_target_text[7] = r'\includegraphics[width=3.5in]{targetfiles/' + sorted_stars_shortnames[0] + "/" + sorted_stars_shortnames[0] + '_2MASS.jpg}\n'
@@ -58,13 +58,15 @@ def writelines_targetfiles(columns_by_file, system_df, head_target_text, tail_ta
         file.writelines(tail_target_text)
         tail_target_text[4] = backup
 
-        ############################## writing other datafiles ##############################
+        ############################## writing secondary datafiles ##############################
 
         for i in range(1, len(columns_by_file)):
             temp_df_columns = columns_by_file[i][0]
             temp_df = system_df[temp_df_columns]
-            temp_filename = columns_by_file[i][4].replace("_", "\_")
-
+            #print(columns_by_file[i][4])
+            #if "Master_X_" not in columns_by_file[i][4]:
+            temp_filename = columns_by_file[i][4].replace("Master_X_","").replace("_", "\_")
+            #print(temp_filename)
             if not temp_df.isnull().values.all():
                 file.writelines(r"\setlength\LTleft{0pt}" + "\n" + r"\setlength\LTright{0pt}" + "\n")
                 file.writelines(r"\begin{longtable}{@{\extracolsep{\fill}}llllll}" + "\n")
@@ -91,5 +93,6 @@ def writelines_targetfiles(columns_by_file, system_df, head_target_text, tail_ta
                         system_string = " & ".join(system_list).replace("+conj+", r"$\pm$")
                         file.writelines(system_string + r"\\" + "\n")
                 file.writelines(r"\end{longtable}" + "\n\n")
+
 
     return
