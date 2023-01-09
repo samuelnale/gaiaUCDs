@@ -53,8 +53,14 @@ def image_to_latex(imgpath, stars_shortnames, df):  #creates HR diagrams and sav
     ax.scatter(x, y, c="#A9A9A9", s=1.5)
     ax.scatter(xtargets, ytargets, c="r")
     ax.grid(True)
-    ax.set_ylim(max(y), min(y))
-    ax.set_xlim(-1, 4)
+    #ax.set_ylim(max(y), min(y))
+    #ax.set_xlim(-1, 4)
+    #print(xtargets, ytargets)
+
+    ax.set_xlim(0, 3)
+    ax.set_ylim(21, 5)
+
+
     # for i in range(1, len(xtargets)):
     #     ax.arrow(xtargets[0], ytargets[0], xtargets[i], ytargets[i], width=0.01)
     ax.set_xlabel('G-G$_{RP}$')
@@ -100,8 +106,10 @@ def generate_tex_targetfile(system_tex_path, sorted_stars_shortnames, df, column
 
 
     single_main_line = r"\input{targetfiles/" + sorted_stars_shortnames[0] + "/" + sorted_stars_shortnames[0] + ".tex}\n" + r"\clearpage" + "\n"
+    index_line = r'\hyperref[sec:' + sorted_stars_shortnames[0] + ']{Link} & ' + sorted_stars_shortnames[0] + ' & ' + stars_data_dict[0]['DISCOVERYNAME'] + ' & ' + stars_data_dict[0]['RA2000'] + ' ' + stars_data_dict[0]['DEC2000'] + r'\\' +'\n'
 
-    return single_main_line, aladin_line
+
+    return single_main_line, aladin_line, index_line
 
 
 def add_aladin_coordinates(stars_data_dict, separation_degrees, targetfiles_path):  # writes single system star coordinates to Aladin's script
@@ -116,18 +124,41 @@ def add_aladin_coordinates(stars_data_dict, separation_degrees, targetfiles_path
     max_sep = np.max(np.nan_to_num(max_sep))
     max_sep = str(int(max_sep.round(0)))
     script_line = "get Simbad " + RAs[0] + " " + DECs[0] + ";"
-    for i in range(1, len(shortnames)):
+    for i in range(0, len(shortnames)):
         script_line = script_line + "draw tag(" + RAs[i] + ", " + DECs[i] + ", " + shortnames[i] + "); "
     script_line = script_line + "zoom " + max_sep + "arcmin; sync; save " + targetfiles_path + shortnames[0] + "/" + shortnames[0] + "_2MASS.jpg;\n"
 
     return script_line
 
 
-def write_main_latex_file(main_tex_path, single_system_lines):  # writes the main.tex file with all the calls to single systems files
+def write_main_latex_file(main_tex_path, single_system_lines):#, index_path):  # writes the main.tex file with all the calls to single systems files
     f = open(main_tex_path, 'w')
     f.writelines(header_main_file())
+    f.writelines(r'\clearpage' + '\n')
+    f.writelines(r'\input{index_file.tex}' + '\n')
+    f.writelines(r'\clearpage' + '\n')
+    f.writelines(r'\input{legend.tex}' + '\n')
+    f.writelines(r'\clearpage' + '\n')
     f.writelines(single_system_lines)
     f.writelines(footer_main_file())
+    f.close()
+
+    return
+
+
+def write_index_file(index_path, index_lines):
+    f = open(index_path, 'w')
+    f.writelines(r'\section{STAR SYSTEMS INDEX by primary star}' + '\n')
+    f.writelines(r'\begin{longtable}{@{\extracolsep{\fill}}llll}' + '\n')
+    #file.writelines(r"\endfirsthead" + "\n" + r"\endhead" + "\n")
+    #f.writelines(r'Link & Shortname & DiscoveryName & Coordinates')
+    f.writelines(r'\toprule'+'\n')
+    f.writelines(r'Hlink & Shortname & Discovery name & Coordinates (2000)\\' + '\n')
+    f.writelines(r'\midrule' + '\n')
+    f.writelines(index_lines)
+    f.writelines(r'\midrule' + '\n')
+    f.writelines('\end{longtable}')
+
     f.close()
 
     return
@@ -167,8 +198,8 @@ def header_main_file():
 
     x.append(r"\noindent")
     x.append(r"\begin{center}")
-    x.append(r"Compiler: Samuel Nale Di Schiena\\")
-    x.append(r"Collaborators: R. L. Smart, B. Bucciarelli" + "\n")
+    x.append(r"Compiler: Samuel Nale\\")
+    x.append(r"Collaborators: R. L. Smart" + "\n")
     x.append(r"\vspace{1cm}")
     x.append(r"\noindent")
     x.append(r"{\bf Questions / comments to \\")
@@ -221,7 +252,7 @@ def create_comments_files(comments_path, starname): # creates empty comments fil
     return
 
 
-def complete_pdf(base_path_array, all_main_lines):  #creates directory for the full RA pdf
+def complete_pdf(base_path_array, all_main_lines, all_index_lines):  #creates directory for the full RA pdf
     if os.path.isdir("latex_files/Full_RA"):
         try:
             shutil.rmtree("latex_files/Full_RA")
@@ -239,10 +270,13 @@ def complete_pdf(base_path_array, all_main_lines):  #creates directory for the f
     for item in base_path_array:
         shutil.copytree(item, "latex_files/Full_RA", dirs_exist_ok=True)
 
-    write_main_latex_file("latex_files/Full_RA/main.tex", all_main_lines)
+    write_index_file("latex_files/Full_RA/index_file.tex", all_index_lines)
+    write_main_latex_file("latex_files/Full_RA/main.tex", all_main_lines)#, "latex_files/Full_RA/index_file.tex")
     copy_files_and_zip_folder("latex_files/Full_RA/")
     os.chdir("latex_files/Full_RA")
-    os.system("pdflatex -interaction=nonstopmode main.tex")
+    os.system("pdflatex -interaction=batchmode main.tex")
+    os.system("bibtex main")
+    os.system("pdflatex -interaction=batchmode main.tex")
     os.rename('main.pdf', 'GaiaUCDs_benchmark_systems.pdf')
     shutil.copy2("GaiaUCDs_benchmark_systems.pdf", "../GaiaUCDs_benchmark_systems.pdf")
 
