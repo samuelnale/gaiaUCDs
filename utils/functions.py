@@ -97,6 +97,7 @@ def create_directories(division, divisions, aladin_yes_or_no):  # creates output
     base_path = "latex_files/RA_" + str(int(division*360/divisions)) + "-" + str(int(division*360/divisions+360/divisions)) + "/"
     targetfiles_path = base_path + "targetfiles/"
     main_tex_path = base_path + "main.tex"
+    index_path = base_path + "index_file.tex"
     comments_path = base_path + "comments/"
 
     for path in [base_path, comments_path]:
@@ -130,7 +131,7 @@ def create_directories(division, divisions, aladin_yes_or_no):  # creates output
             print(err, ",", err.args, ",", err.targetfiles_path)
             print("Creation of the directory %s failed" % targetfiles_path)
 
-    return base_path, main_tex_path, targetfiles_path, comments_path
+    return base_path, main_tex_path, targetfiles_path, comments_path, index_path
 
 
 def create_script_dir():    #creates the directory for the aladin's scripts: aladin_scripts/
@@ -198,9 +199,8 @@ def write_aladin_script(script_name, all_aladin_lines, aladin_yes_or_no):   #wri
 def copy_files_and_zip_folder(base_path):   # copies the necessary LaTeX files for compiling
     shutil.copy2("setup/refs.bib", base_path)
     shutil.copy2("setup/summary.tex", base_path)
-    shutil.copy2("setup/collaborators.tex", base_path)
-
-
+    shutil.copy2("setup/summary.tex", base_path)
+    shutil.copy2("setup/legend.tex", base_path)
     #command = "zip -r -j latex_files/Benchmark_" + str(division) + ".zip latex_files/"+str(division)
     #os.system(command)
     return
